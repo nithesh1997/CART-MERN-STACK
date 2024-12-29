@@ -25,7 +25,7 @@ exports.getSingleProduct = async(req, res, next) => {
     const product = await Product.findById(req.params.id);
 
     if(!product){
-        new ErrorHandler("Product not found", 400)
+       return next(new ErrorHandler("Product not found test", 400))
     }
 
     res.status(201).json({
