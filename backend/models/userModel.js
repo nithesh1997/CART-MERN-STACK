@@ -45,6 +45,10 @@ userSchema.methods.getJwtToken = function(){
     })
 }
 
+userSchema.methods.isValidPassword = async function(enteredPassword){
+  return await bcrypt.compare(enteredPassword, this.password)
+}
+
 let model =  mongoose.model('User', userSchema);
 
 module.exports = model;
