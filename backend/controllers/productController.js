@@ -6,8 +6,15 @@ const APIFeatures = require('../utils/apiFeatures');
 //Get Products /api/v1/products
 
 // Get product with search and filter querys /api/v1/products?keyword=Dell&category=Laptops
+// Get product with price filtering querys
+    // ?price[lt]=500 // less then 500
+    // ?price[gt]=1000 // greater then 1000
+    // ?price[lte]=500 // less then or equal 500
+    // ?price[gte]=1000 // greater then or equal 1000
+// Get product with pagination query ->  /api/v1/products?page=1
 exports.getProducts= async (req, res, next) =>{
-    let apiFeatures = new APIFeatures(Product.find(), req.query).search().filter();
+    const resPerPage = 2;
+    let apiFeatures = new APIFeatures(Product.find(), req.query).search().filter().paginate(resPerPage);
 
     const products = await apiFeatures.query;
     res.status(200).json({
