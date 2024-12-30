@@ -4,8 +4,10 @@ const ErrorHandler = require('../utils/errorHandler');
 const APIFeatures = require('../utils/apiFeatures');
 
 //Get Products /api/v1/products
+
+// Get product with search and filter querys /api/v1/products?keyword=Dell&category=Laptops
 exports.getProducts= async (req, res, next) =>{
-    let apiFeatures = new APIFeatures(Product.find(), req.query).search()
+    let apiFeatures = new APIFeatures(Product.find(), req.query).search().filter();
 
     const products = await apiFeatures.query;
     res.status(200).json({
