@@ -13,7 +13,7 @@ const APIFeatures = require('../utils/apiFeatures');
     // ?price[gte]=1000 // greater then or equal 1000
 // Get product with pagination query ->  /api/v1/products?page=1
 exports.getProducts= async (req, res, next) =>{
-    const resPerPage = 2;
+    const resPerPage = process.env.PAGINATE_COUNT;
     let apiFeatures = new APIFeatures(Product.find(), req.query).search().filter().paginate(resPerPage);
 
     const products = await apiFeatures.query;
