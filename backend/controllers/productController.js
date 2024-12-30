@@ -22,7 +22,7 @@ exports.newProduct = catchAsynError(async (req, res, next) =>{
 })
 
 // Get Single Product /api/v1/product/:id
-exports.getSingleProduct = async(req, res, next) => {
+exports.getSingleProduct = catchAsynError(async(req, res, next) => {
     const product = await Product.findById(req.params.id);
 
     if(!product){
@@ -33,7 +33,7 @@ exports.getSingleProduct = async(req, res, next) => {
         success: true,
         product
     })
-} 
+})
 
 
 
