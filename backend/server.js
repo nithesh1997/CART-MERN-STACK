@@ -18,3 +18,11 @@ process.on("unhandledRejection",(err)=>{
         process.exit(1);
     })
 })
+
+process.on("uncaughtException",(err)=>{
+    console.log(`Error: ${err.message}`) 
+    console.log(`Shutting down the server due to uncaught rejection error`);
+    server.close(()=>{
+        process.exit(1);
+    })
+})
