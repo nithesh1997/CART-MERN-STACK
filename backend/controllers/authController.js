@@ -18,6 +18,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
     sendToken(user, 201, res);
 })
 
+// Login user - /api/v1/login
 exports.loginUser = catchAsyncError(async (req, res, next) => {
     const {email, password} = req.body;
 
@@ -39,6 +40,7 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
     sendToken(user, 201, res);
 })
 
+// Logout - /api/v1/logout
 exports.logoutUser = (req, res, next) => {
     res.cookie('token', null, {
         expires: new Date(Date.now()),
@@ -99,6 +101,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
     }
 });
  
+// Reset Password - /api/v1/password/reset/:token
 exports.resetPassword = catchAsyncError( async(req, res, next)=>{
     let resetPasswordToken;
     try {
@@ -132,4 +135,14 @@ exports.resetPassword = catchAsyncError( async(req, res, next)=>{
     })
 
     sendToken(user, 201, res)
+})
+
+// Get User Profile - /api/v1/myprofile
+exports.getUserProfile = catchAsyncError(async (req, res, next) => {
+    const user =  await User.findById(req.user.id);
+
+    res.status(200).json({
+        success: true,
+        user
+    })
 })
