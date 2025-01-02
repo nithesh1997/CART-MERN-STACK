@@ -65,8 +65,8 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
         resetToken = user.getResetToken();
 
         await user.save({ validateBeforeSave: false });
-        console.log('Reset Token:', resetToken);
-        console.log('Hashed Token:', user.resetPasswordToken);
+        // console.log('Reset Token:', resetToken);
+        // console.log('Hashed Token:', user.resetPasswordToken);
     } catch (err) {
         console.error('Error generating reset token:', err.message);
         return next(new ErrorHandler('Error generating reset token', 500));
@@ -103,9 +103,9 @@ exports.resetPassword = catchAsyncError( async(req, res, next)=>{
     let resetPasswordToken;
     try {
          resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
-        console.log('Reset Password Token:', resetPasswordToken);
+        // console.log('Reset Password Token:', resetPasswordToken);
     } catch (error) {
-        console.error('Error using crypto:', error.message);
+        // console.error('Error using crypto:', error.message);
         return next(new ErrorHandler('Crypto module is not functioning correctly', 500));
     }
 
