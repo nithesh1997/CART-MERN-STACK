@@ -50,7 +50,7 @@ userSchema.methods.getJwtToken = function () {
 };
 
 userSchema.methods.isValidPassword = async function (enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password);
+    return  bcrypt.compare(enteredPassword, this.password);
 };
 
 userSchema.methods.getResetToken = function () {
