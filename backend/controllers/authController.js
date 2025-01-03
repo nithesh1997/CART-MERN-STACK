@@ -1,4 +1,4 @@
-const catchAsyncError = require('../middlewares/catchAsynError');
+const catchAsyncError = require('../middlewares/catchAsyncError');
 const User = require('../models/userModel');
 const sendEmail = require('../utils/email');
 const ErrorHandler = require("../utils/errorHandler")

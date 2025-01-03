@@ -1,4 +1,4 @@
-const catchAsynError = require('../middlewares/catchAsynError');
+const catchAsyncError = require('../middlewares/catchAsyncError');
 const Product = require('../models/productModel');
 const ErrorHandler = require('../utils/errorHandler');
 const APIFeatures = require('../utils/apiFeatures');
@@ -25,7 +25,7 @@ exports.getProducts= async (req, res, next) =>{
 }   
 
 //Create Product/api/v1/product/new
-exports.newProduct = catchAsynError(async (req, res, next) =>{
+exports.newProduct = catchAsyncError(async (req, res, next) =>{
     req.body.user = req.user.id;
     const product = await Product.create(req.body);
     res.status(201).json({
@@ -35,7 +35,7 @@ exports.newProduct = catchAsynError(async (req, res, next) =>{
 })
 
 // Get Single Product /api/v1/product/:id
-exports.getSingleProduct = catchAsynError(async(req, res, next) => {
+exports.getSingleProduct = catchAsyncError(async(req, res, next) => {
     const product = await Product.findById(req.params.id);
 
     if(!product){
