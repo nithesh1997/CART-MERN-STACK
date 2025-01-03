@@ -10,6 +10,6 @@ router.route('/product/:id')
                         .delete(deleteProduct);
 
 // Admin routes 
-router.route('admin/product/new').post(isAuthenticatedUser , authorizeRoles('admin'), newProduct);
+router.route('/admin/product/new').post(isAuthenticatedUser , authorizeRoles('admin'), newProduct);
 
 module.exports = router
