@@ -51,7 +51,7 @@ exports.getSingleProduct = catchAsyncError(async(req, res, next) => {
 
 
 // Update Product /api/v1/product/:id
-exports.updateProduct = async(req, res, next) => {
+exports.updateProduct = catchAsyncError(async(req, res, next) => {
     let product = await Product.findById(req.params.id);
 
     if(!product){
@@ -70,10 +70,10 @@ exports.updateProduct = async(req, res, next) => {
         success: true,
         product
     })
-}
+})
 
 //Delete Product /api/v1/product/:id
-exports.deleteProduct = async(req, res, next) => {
+exports.deleteProduct = catchAsyncError(async(req, res, next) => {
     let product = await Product.findById(req.params.id);
 
     if(!product){
@@ -89,4 +89,4 @@ exports.deleteProduct = async(req, res, next) => {
         success: true,
         message: "Product Deleted!!"
     })
-}
+})
